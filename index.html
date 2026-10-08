@@ -194,21 +194,29 @@
       const addTripBtn = document.getElementById('addTripBtn');
       const welcomePopup = document.getElementById('welcomePopup');
 
-      if (pwd === "6789") { // ผู้บริหาร
+      if (pwd === "6789") { // รหัสผู้บริหาร
         loginOverlay.classList.add('fade-out');
         bodyContainer.classList.remove('overflow-hidden');
-        addTripBtn.classList.add('hidden');
-        addTripBtn.classList.remove('flex');
         
+        // ซ่อนปุ่มเพิ่มข้อมูลทริป
+        addTripBtn.style.display = 'none'; 
+        
+        // โชว์ข้อความต้อนรับ
         welcomePopup.classList.add('welcome-show');
         setTimeout(() => { welcomePopup.classList.remove('welcome-show'); }, 2500);
+        
         fetchSheetData();
-      } else if (pwd === "1234") { // ผู้ใช้งาน
+
+      } else if (pwd === "1234") { // รหัสผู้ใช้งาน
         loginOverlay.classList.add('fade-out');
         bodyContainer.classList.remove('overflow-hidden');
-        addTripBtn.classList.remove('hidden');
-        addTripBtn.classList.add('flex');
+        
+        // บังคับแสดงปุ่มเพิ่มข้อมูลทริป
+        addTripBtn.classList.remove('hidden'); 
+        addTripBtn.style.display = 'flex';
+        
         fetchSheetData();
+
       } else { // รหัสผิด
         errorMsg.classList.remove('hidden');
         document.getElementById('passwordInput').value = '';
